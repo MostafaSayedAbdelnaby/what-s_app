@@ -1,0 +1,1 @@
+ C:\\Users\\Mostafa\\AndroidStudioProjects\\whats_app\\.dart_tool\\flutter_build\\f47bc4c98d288e288ae9f1f3475dc5db\\native_assets.yaml: 
