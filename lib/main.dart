@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:whats_app/screens/chat_screen/chat_screen.dart';
+import 'core/resources/theme_provider.dart';
+import 'core/routes_manager/route_generator.dart';
+import 'core/routes_manager/routes.dart';
+import 'package:provider/provider.dart';
 
+import 'core/theme/dark_theme.dart';
+import 'core/theme/light_theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,9 +21,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ChatScreen(),
+      theme: LightTheme().themeData,
+      darkTheme: DarkTheme().themeData,
+      themeMode: themeProvider.themeMode,
+      onGenerateRoute: RouteGenerator.getRoute,
+      initialRoute: Routes.chatList,
     );
   }
 }
